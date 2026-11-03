@@ -39,6 +39,7 @@ export default function NoteForm({ closeModal }: NoteFormProps) {
       queryClient.invalidateQueries({
         queryKey: ["notes"],
       });
+      closeModal();
     },
   });
 
@@ -48,7 +49,6 @@ export default function NoteForm({ closeModal }: NoteFormProps) {
   ) => {
     mutate(values);
     actions.resetForm();
-    closeModal();
   };
 
   return (
@@ -61,7 +61,7 @@ export default function NoteForm({ closeModal }: NoteFormProps) {
         <div className={css.formGroup}>
           <label htmlFor="title">Title</label>
           <Field id="title" type="text" name="title" className={css.input} />
-          <ErrorMessage name="title" className={css.error} />
+          <ErrorMessage name="title" className={css.error} component="span" />
         </div>
 
         <div className={css.formGroup}>
@@ -73,7 +73,7 @@ export default function NoteForm({ closeModal }: NoteFormProps) {
             rows={8}
             className={css.textarea}
           />
-          <ErrorMessage name="content" className={css.error} />
+          <ErrorMessage name="content" className={css.error} component="span" />
         </div>
 
         <div className={css.formGroup}>
@@ -85,7 +85,7 @@ export default function NoteForm({ closeModal }: NoteFormProps) {
             <option value="Meeting">Meeting</option>
             <option value="Shopping">Shopping</option>
           </Field>
-          <ErrorMessage name="tag" className={css.error} />
+          <ErrorMessage name="tag" className={css.error} component="span" />
         </div>
 
         <div className={css.actions}>
